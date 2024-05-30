@@ -1,1 +1,1 @@
-# ruby-masterminds
+# ruby-mastermind
