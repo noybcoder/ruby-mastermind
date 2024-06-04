@@ -1,13 +1,15 @@
 require 'colorize'
 require 'colorized_string'
+require_relative 'visualizable'
 
 class Board
+  include Visualizable
 
   class Peg
     attr_reader :code_pegs,  :key_pegs
     def initialize
-      @code_pegs = %w[red green yellow blue magenta cyan]
-      @key_pegs = %w[black white]
+      @code_pegs = Array(1..6)
+      @key_pegs = Array(1..2)
     end
   end
 
@@ -30,6 +32,3 @@ class Board
   end
 
 end
-
-board = Board.new
-board.code_pegs_tracker.each { |color| puts ColorizedString['O'].colorize(color.to_sym) }
