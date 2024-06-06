@@ -27,11 +27,10 @@ module Visualizable
     peg_numbers = args.fetch(:peg_numbers, Array(1..6))
     delimiter = args.fetch(:delimiter, '')
 
-    peg_numbers.map { |num| set_code_peg_colors(num)[num]}.join(delimiter)
+    peg_numbers.map { |num| set_code_peg_colors(num)[num] }.join(delimiter)
   end
 
   # def defaults
   #   {:peg_numbers => Array(1..6), :peg => "\u2b24", :delimiter => ", "}
   # end
-
 end

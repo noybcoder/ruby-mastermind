@@ -3,6 +3,8 @@
 require 'colorize'
 require 'colorized_string'
 require_relative 'visualizable'
+require_relative 'codemaker'
+require_relative 'codebreaker'
 
 class Board
   include Visualizable
@@ -19,12 +21,15 @@ class Board
   private_constant :Peg
   @@board_count = 0
 
-  attr_accessor :code_pegs_tracker, :key_pegs_tracker, :secret_code
+  attr_accessor :code_pegs_tracker, :key_pegs_tracker
+  attr_reader :secret_code, :codemaker
 
   def initialize
+    @codemaker = CodeMaker.new
+    @codebreaker = CodeBreaker.new
     @code_pegs_tracker = Array.new(12) { Array.new(4) }
     @key_pegs_tracker = Array.new(12) { Array.new(4) }
-    @secret_code = Array.new(4)
+    @secret_code = codemaker.select_secret_code
     @@board_count += 1
 
     begin
@@ -35,9 +40,8 @@ class Board
       exit # Terminate the program
     end
   end
+
 end
 
 board = Board.new
-
-# board.secret_code[0] = 'Preston'
-p board.key_pegs_tracker
+p board.secret_code
