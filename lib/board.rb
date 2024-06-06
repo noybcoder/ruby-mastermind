@@ -8,8 +8,7 @@ require_relative 'codebreaker'
 require_relative 'errors'
 
 class Board
-  include Visualizable
-  include CustomErrors
+  include Visualizable, CustomErrors
 
   class Peg
     attr_reader :code_pegs, :key_pegs
@@ -20,23 +19,36 @@ class Board
     end
   end
 
+  class << self
+    attr_accessor :board_count
+  end
+
   private_constant :Peg
-  @@board_count = 0
+  BOARD_LIMIT = 1
+  @board_count = 0
 
   attr_accessor :code_pegs_tracker, :key_pegs_tracker
-  attr_reader :secret_code, :codemaker
+  attr_reader :secret_code, :codemaker, :codebreaker
 
   def initialize
     @codemaker = CodeMaker.new
     @codebreaker = CodeBreaker.new
-    @code_pegs_tracker = Array.new(12) { Array.new(4) }
-    @key_pegs_tracker = Array.new(12) { Array.new(4) }
     @secret_code = codemaker.select_code
-    @@board_count += 1
+    @code_pegs_tracker = []
+    @key_pegs_tracker = []
+    self.class.board_count += 1
 
-    handle_game_violations(BoardLimitViolation, @@board_count)
+    handle_game_violations(BoardLimitViolation, self.class.board_count, BOARD_LIMIT)
+  end
+
+  def update_code_pegs_tracker
+    code_pegs_tracker << codebreaker.select_code
   end
 
 end
 
 board = Board.new
+p board.secret_code
+
+board.update_code_pegs_tracker
+p board.code_pegs_tracker
