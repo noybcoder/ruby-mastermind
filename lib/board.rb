@@ -47,8 +47,8 @@ class Board
 
 end
 
-board = Board.new
-p board.secret_code
+# board = Board.new
+# p board.secret_code
 
-board.update_code_pegs_tracker
-p board.code_pegs_tracker
+# board.update_code_pegs_tracker
+# p board.code_pegs_tracker
