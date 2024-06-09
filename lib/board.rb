@@ -45,6 +45,10 @@ class Board
     code_pegs_tracker << codebreaker.select_code
   end
 
+  # def upate_key_pegs_tracker
+  #   key_pegs_tracker << game.validate_guess
+  # end
+
 end
 
 # board = Board.new
