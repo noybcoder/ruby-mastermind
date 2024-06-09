@@ -14,8 +14,8 @@ module Visualizable
 
   def set_key_peg_colors(peg = "\u2b24")
     {
-      :exact_match => "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
-      :color_match => "\e[38;2;255;255;255;1m#{peg}\e[0m" # white
+      exact_match: "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
+      color_match: "\e[38;2;255;255;255;1m#{peg}\e[0m" # white
     }
   end
 

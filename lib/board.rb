@@ -8,7 +8,8 @@ require_relative 'codebreaker'
 require_relative 'errors'
 
 class Board
-  include Visualizable, CustomErrors
+  include CustomErrors
+  include Visualizable
 
   class Peg
     attr_reader :code_pegs, :key_pegs
@@ -45,14 +46,15 @@ class Board
     code_pegs_tracker << codebreaker.select_code
   end
 
-  # def upate_key_pegs_tracker
-  #   key_pegs_tracker << game.validate_guess
-  # end
-
+  def update_key_pegs_tracker
+    key_pegs_tracker << codemaker.validate_guess(code_pegs_tracker[0], secret_code)
+  end
 end
 
-# board = Board.new
-# p board.secret_code
+board = Board.new
+p board.secret_code
 
-# board.update_code_pegs_tracker
-# p board.code_pegs_tracker
+board.update_code_pegs_tracker
+board.update_key_pegs_tracker
+p board.code_pegs_tracker
+p board.key_pegs_tracker

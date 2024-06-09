@@ -19,3 +19,6 @@ class CodeBreaker < Character
     handle_game_violations(CodeBreakerLimitViolation, self.class.codebreaker_count, CODEBREAKER_LIMIT)
   end
 end
+
+cb = CodeBreaker.new
+puts cb
