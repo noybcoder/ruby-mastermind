@@ -7,17 +7,17 @@ class Character
 
   def select_code
     loop do
-      code = prompt
+      code = block_given? ? yield : prompt
       return get_code(code) if valid_code?(code)
 
-      puts 'Please only enter integers between 1 and 6 with no spaces within.'
+      puts 'Please only enter 4 integers between 1 and 6 with no spaces or symbols within.'
     end
   end
 
   private
 
   def prompt
-    puts "Enter any 4 numbers from #{display_colors(delimiter: ', ')}"
+    puts "Enter any 4 numbers from #{display_colors(delimiter: ', ')}:"
     gets.chomp
   end
 

@@ -2,8 +2,10 @@
 
 require_relative 'character'
 require_relative 'errors'
+require_relative 'visualizable'
 
 class CodeBreaker < Character
+  include Visualizable
   include CustomErrors
 
   class << self
@@ -18,7 +20,16 @@ class CodeBreaker < Character
     self.class.codebreaker_count += 1
     handle_game_violations(CodeBreakerLimitViolation, self.class.codebreaker_count, CODEBREAKER_LIMIT)
   end
+
+  def make_guesses
+    select_code { prompt }
+  end
+
+  def prompt
+    puts "Codebreaker, enter any 4 numbers from #{display_colors(delimiter: ', ')} to crack the code:"
+    gets.chomp
+  end
 end
 
-cb = CodeBreaker.new
-puts cb
+# cb = CodeBreaker.new
+# puts cb.make_guesses

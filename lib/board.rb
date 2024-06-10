@@ -34,7 +34,7 @@ class Board
   def initialize
     @codemaker = CodeMaker.new
     @codebreaker = CodeBreaker.new
-    @secret_code = codemaker.select_code
+    @secret_code = codemaker.set_secret_code
     @code_pegs_tracker = []
     @key_pegs_tracker = []
     self.class.board_count += 1
@@ -43,18 +43,18 @@ class Board
   end
 
   def update_code_pegs_tracker
-    code_pegs_tracker << codebreaker.select_code
+    code_pegs_tracker << codebreaker.make_guesses
   end
 
   def update_key_pegs_tracker
-    key_pegs_tracker << codemaker.validate_guess(code_pegs_tracker[0], secret_code)
+    key_pegs_tracker << codemaker.validate_guess(code_pegs_tracker[-1], secret_code)
   end
 end
 
-board = Board.new
-p board.secret_code
+# board = Board.new
+# p board.secret_code
 
-board.update_code_pegs_tracker
-board.update_key_pegs_tracker
-p board.code_pegs_tracker
-p board.key_pegs_tracker
+# board.update_code_pegs_tracker
+# board.update_key_pegs_tracker
+# p board.code_pegs_tracker
+# p board.key_pegs_tracker
