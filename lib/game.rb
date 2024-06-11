@@ -11,22 +11,6 @@ class Game
     @board = board
   end
 
-  def win?(round)
-    board.key_pegs_tracker[round].all?(1)
-  end
-
-  def lose?(round)
-    round.eql?(ROUND_LIMIT) && !win?(round)
-  end
-
-  def display_win_message
-    'Congratulations, codebreaker! You have cracked the code!'
-  end
-
-  def display_lose_message(_round)
-    'Sorry, the codemaker is good. Please try again next time.'
-  end
-
   def play
     round = 0
     loop do
@@ -43,6 +27,28 @@ class Game
       end
       round += 1
     end
+  end
+
+  private
+
+  def win?(round)
+    board.key_pegs_tracker[round].all?(1)
+  end
+
+  def lose?(round)
+    round.eql?(ROUND_LIMIT) && !win?(round)
+  end
+
+  def display_win_message
+    puts "Congratulations, codebreaker! You have cracked the code!\n\n"
+  end
+
+  def reveal_secret_code
+    board.display_secret_code(board.secret_code)
+  end
+
+  def display_lose_message
+    puts "Oops, the secret code is #{reveal_secret_code}. Better luck next time!\n\n"
   end
 end
 

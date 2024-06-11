@@ -38,6 +38,10 @@ module Visualizable
     display_colors(peg_numbers: key_pegs_tracker[round], code_set: :set_key_peg_colors, peg: "\u25cf")
   end
 
+  def display_secret_code(secret_code)
+    display_colors(peg_numbers: secret_code, peg: "\u25cf")
+  end
+
   def display_board_headers
     puts "\n"
     puts '--------------------------------------------------------------------'

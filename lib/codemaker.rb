@@ -25,12 +25,6 @@ class CodeMaker < Character
     select_code { randomize }
   end
 
-  def randomize
-    puts "Codemaker, enter 4 numbers from #{display_colors(delimiter: ', ')} to create the secret code:"
-    puts 'The secret code is created. Time to guess!'
-    4.times.map { rand(1..6) }.join('')
-  end
-
   def validate_guess(guesses, secret_code)
     guesses.map.each_with_index do |guess, index|
       if guess == secret_code[index]
@@ -42,4 +36,13 @@ class CodeMaker < Character
       end
     end
   end
+
+  private
+
+  def randomize
+    puts "Codemaker, enter 4 numbers from #{display_colors(delimiter: ', ')} to create the secret code:"
+    puts 'The secret code is created. Time to guess!'
+    4.times.map { rand(1..6) }.join('')
+  end
+
 end
