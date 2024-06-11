@@ -46,9 +46,34 @@ class Board
     code_pegs_tracker << codebreaker.make_guesses
   end
 
-  def update_key_pegs_tracker
-    key_pegs_tracker << codemaker.validate_guess(code_pegs_tracker[-1], secret_code)
+  def update_key_pegs_tracker(round)
+    key_pegs_tracker << codemaker.validate_guess(code_pegs_tracker[round], secret_code)
   end
+
+  def display_code_pegs(round)
+    display_colors(peg_numbers: code_pegs_tracker[round], peg: "\u25cf")
+  end
+
+  def display_key_pegs(round)
+    display_colors(peg_numbers: key_pegs_tracker[round], code_set: :set_key_peg_colors, peg: "\u25cf")
+  end
+
+  def get_exact_matches(round)
+    code_pegs_tracker[round].count(1)
+  end
+
+  def get_color_matches(round)
+    key_pegs_tracker[round].count(0)
+  end
+
+  def display_outcome(round)
+    (round + 1).times do |idx|
+      print (idx + 1 < 10)? "|   #{idx + 1}   | " : "|  #{idx + 1}   | "
+      print "#{display_code_pegs(idx)} | #{display_key_pegs(idx)} | "
+      puts "Matches => exact: #{get_exact_matches(idx)} | color: #{get_color_matches(idx)} |"
+    end
+  end
+
 end
 
 # board = Board.new

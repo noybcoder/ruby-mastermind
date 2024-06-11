@@ -26,10 +26,15 @@ class Game
     loop do
       puts "Round #{round + 1}"
       board.update_code_pegs_tracker
-      board.update_key_pegs_tracker
+      board.update_key_pegs_tracker(round)
       puts "\n"
-      display = board.code_pegs_tracker[round].map {|peg| set_code_peg_colors[peg]}
-      display.each { |peg| print peg}
+      puts "--------------------------------------------------------------------"
+      puts "| Round |   Guess    |    Hint    |             Remark             |"
+      puts "--------------------------------------------------------------------"
+      board.display_outcome(round)
+      puts "--------------------------------------------------------------------"
+      puts "#{board.secret_code}"
+      puts "#{board.key_pegs_tracker[round]}"
       puts "\n\n"
       if win?
         puts 'You win!'
