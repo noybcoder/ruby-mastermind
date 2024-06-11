@@ -13,12 +13,12 @@ class Game
     @board = board
   end
 
-  def win?
-    board.key_pegs_tracker[-1].all?(1)
+  def win?(round)
+    board.key_pegs_tracker[round].all?(1)
   end
 
-  def lose?(limit)
-    board.code_pegs_tracker.size.eql?(limit) && !win?
+  def lose?
+    board.code_pegs_tracker.size.eql?(ROUND_LIMIT) && !win?
   end
 
   def play
@@ -27,19 +27,15 @@ class Game
       puts "Round #{round + 1}"
       board.update_code_pegs_tracker
       board.update_key_pegs_tracker(round)
-      puts "\n"
-      puts "--------------------------------------------------------------------"
-      puts "| Round |   Guess    |    Hint    |             Remark             |"
-      puts "--------------------------------------------------------------------"
-      board.display_outcome(round)
-      puts "--------------------------------------------------------------------"
-      puts "#{board.secret_code}"
-      puts "#{board.key_pegs_tracker[round]}"
+      board.display_board_headers
+      puts '--------------------------------------------------------------------'
+      board.display_round_summary(round)
+      puts '--------------------------------------------------------------------'
       puts "\n\n"
-      if win?
+      if win?(round)
         puts 'You win!'
         break
-      elsif lose?(12)
+      elsif lose?
         puts 'You lose!'
         break
       end

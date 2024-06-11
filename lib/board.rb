@@ -59,27 +59,24 @@ class Board
   end
 
   def get_exact_matches(round)
-    code_pegs_tracker[round].count(1)
+    key_pegs_tracker[round].count(1)
   end
 
   def get_color_matches(round)
     key_pegs_tracker[round].count(0)
   end
 
-  def display_outcome(round)
+  def display_board_headers
+    puts "\n"
+    puts '--------------------------------------------------------------------'
+    puts '| Round |   Guess    |    Hint    |             Remark             |'
+  end
+
+  def display_round_summary(round)
     (round + 1).times do |idx|
-      print (idx + 1 < 10)? "|   #{idx + 1}   | " : "|  #{idx + 1}   | "
+      print idx + 1 < 10 ? "|   #{idx + 1}   | " : "|  #{idx + 1}   | "
       print "#{display_code_pegs(idx)} | #{display_key_pegs(idx)} | "
       puts "Matches => exact: #{get_exact_matches(idx)} | color: #{get_color_matches(idx)} |"
     end
   end
-
 end
-
-# board = Board.new
-# p board.secret_code
-
-# board.update_code_pegs_tracker
-# board.update_key_pegs_tracker
-# p board.code_pegs_tracker
-# p board.key_pegs_tracker

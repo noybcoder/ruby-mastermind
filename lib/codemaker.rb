@@ -35,12 +35,9 @@ class CodeMaker < Character
     guesses.map.each_with_index do |guess, index|
       if guess == secret_code[index]
         1
-      elsif guesses.count(guess) <= secret_code.count(guess) && secret_code.count(guess).positive?
+      elsif guesses.count(guess) <= secret_code.count(guess)
         0
       end
     end
   end
 end
-
-# cm = CodeMaker.new
-# p cm.set_secret_code

@@ -26,7 +26,7 @@ module Visualizable
     code_set = args.fetch(:code_set, :set_code_peg_colors)
 
     peg_numbers.map do |num|
-      send(code_set, peg = args.fetch(:peg, num))[num]
+      send(code_set, args.fetch(:peg, num))[num]
     end.join(delimiter)
   end
 end
