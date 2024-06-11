@@ -15,9 +15,12 @@ class CodeBreaker < Character
   CODEBREAKER_LIMIT = 1
   @codebreaker_count = 0
 
+  attr_accessor :code_combo
+
   def initialize
     super
     self.class.codebreaker_count += 1
+    @code_combo = Array(1..6).repeated_permutation(4).to_a
     handle_game_violations(CodeBreakerLimitViolation, self.class.codebreaker_count, CODEBREAKER_LIMIT)
   end
 
@@ -29,7 +32,11 @@ class CodeBreaker < Character
     puts "Codebreaker, enter any 4 numbers from #{display_colors(delimiter: ', ')} to crack the code:"
     gets.chomp
   end
+
+  def minimax_algo
+    code_combo
+  end
 end
 
 # cb = CodeBreaker.new
-# puts cb.make_guesses
+# p cb.minimax_algo

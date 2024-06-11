@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 require_relative 'board'
-require_relative 'visualizable'
 
 class Game
-  include Visualizable
-  attr_accessor :board, :guess_validator
+  attr_accessor :board
 
-  ROUND_LIMIT = 12
+  ROUND_LIMIT = 11
 
   def initialize(board)
     @board = board
@@ -17,8 +15,16 @@ class Game
     board.key_pegs_tracker[round].all?(1)
   end
 
-  def lose?
-    board.code_pegs_tracker.size.eql?(ROUND_LIMIT) && !win?
+  def lose?(round)
+    round.eql?(ROUND_LIMIT) && !win?(round)
+  end
+
+  def display_win_message
+    'Congratulations, codebreaker! You have cracked the code!'
+  end
+
+  def display_lose_message(_round)
+    'Sorry, the codemaker is good. Please try again next time.'
   end
 
   def play
@@ -27,16 +33,12 @@ class Game
       puts "Round #{round + 1}"
       board.update_code_pegs_tracker
       board.update_key_pegs_tracker(round)
-      board.display_board_headers
-      puts '--------------------------------------------------------------------'
-      board.display_round_summary(round)
-      puts '--------------------------------------------------------------------'
-      puts "\n\n"
+      board.display_board(round, board.code_pegs_tracker, board.key_pegs_tracker)
       if win?(round)
-        puts 'You win!'
+        display_win_message
         break
-      elsif lose?
-        puts 'You lose!'
+      elsif lose?(round)
+        display_lose_message
         break
       end
       round += 1

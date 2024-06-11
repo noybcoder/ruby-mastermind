@@ -37,6 +37,8 @@ class CodeMaker < Character
         1
       elsif guesses.count(guess) <= secret_code.count(guess)
         0
+      else
+        -1
       end
     end
   end

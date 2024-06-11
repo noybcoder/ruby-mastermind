@@ -16,7 +16,7 @@ module Visualizable
     {
       1 => "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
       0 => "\e[38;2;255;255;255;1m#{peg}\e[0m", # white
-      nil => "\e[38;2;0;0;0;1m \e[0m"
+      -1 => "\e[38;2;0;0;0;1m \e[0m"
     }
   end
 
@@ -28,5 +28,36 @@ module Visualizable
     peg_numbers.map do |num|
       send(code_set, args.fetch(:peg, num))[num]
     end.join(delimiter)
+  end
+
+  def display_code_pegs(code_pegs_tracker, round)
+    display_colors(peg_numbers: code_pegs_tracker[round], peg: "\u25cf")
+  end
+
+  def display_key_pegs(key_pegs_tracker, round)
+    display_colors(peg_numbers: key_pegs_tracker[round], code_set: :set_key_peg_colors, peg: "\u25cf")
+  end
+
+  def display_board_headers
+    puts "\n"
+    puts '--------------------------------------------------------------------'
+    puts '| Round |   Guess    |    Hint    |             Remark             |'
+    puts '--------------------------------------------------------------------'
+  end
+
+  def display_round_summary(round, code_pegs_tracker, key_pegs_tracker)
+    (round + 1).times do |idx|
+      print idx + 1 < 10 ? "|   #{idx + 1}   | " : "|  #{idx + 1}   | "
+      print "#{display_code_pegs(code_pegs_tracker, idx)} | "
+      print "#{display_key_pegs(key_pegs_tracker, idx)} | "
+      print "Matches => exact: #{key_pegs_tracker[idx].count(1)} | "
+      puts "color: #{key_pegs_tracker[idx].count(0)} |"
+    end
+    puts "--------------------------------------------------------------------\n"
+  end
+
+  def display_board(round, code_pegs_tracker, key_pegs_tracker)
+    display_board_headers
+    display_round_summary(round, code_pegs_tracker, key_pegs_tracker)
   end
 end
