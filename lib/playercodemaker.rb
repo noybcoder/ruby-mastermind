@@ -3,7 +3,7 @@
 require_relative 'character'
 require_relative 'errors'
 
-class CodeMaker < Character
+class PlayerCodeMaker < Character
   include CustomErrors
 
   class << self
@@ -15,9 +15,19 @@ class CodeMaker < Character
 
   def initialize
     super
-    self.class.codemaker_count ||= 0
     self.class.codemaker_count += 1
     handle_game_violations(CodeMakerLimitViolation, self.class.codemaker_count, CODEMAKER_LIMIT)
   end
 
+  def set_secret_code
+    select_code { prompt }
+  end
+
+  private
+
+  def prompt
+    puts "Codemaker, enter any 4 numbers from #{display_colors(delimiter: ', ')} to create the secret code:"
+    gets.chomp
+    puts 'The secret code is created. Time to guess!'
+  end
 end

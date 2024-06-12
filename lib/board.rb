@@ -3,8 +3,10 @@
 require 'colorize'
 require 'colorized_string'
 require_relative 'visualizable'
-require_relative 'codemaker'
-require_relative 'codebreaker'
+require_relative 'npccodemaker'
+require_relative 'playercodebreaker'
+require_relative 'npccodebreaker'
+require_relative 'playercodemaker'
 require_relative 'errors'
 
 class Board
@@ -32,8 +34,8 @@ class Board
   attr_reader :secret_code, :codemaker, :codebreaker
 
   def initialize
-    @codemaker = CodeMaker.new
-    @codebreaker = CodeBreaker.new
+    @codemaker = NPCCodeMaker.new
+    @codebreaker = PlayerCodeBreaker.new
     @secret_code = codemaker.set_secret_code
     @code_pegs_tracker = []
     @key_pegs_tracker = []
