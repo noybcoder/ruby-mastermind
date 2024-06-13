@@ -16,7 +16,7 @@ module Visualizable
     {
       1 => "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
       0 => "\e[38;2;255;255;255;1m#{peg}\e[0m", # white
-      -1 => "\e[38;2;0;0;0;1m \e[0m"
+      nil => "\e[38;2;0;0;0;1m \e[0m"
     }
   end
 
