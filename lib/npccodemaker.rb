@@ -18,10 +18,3 @@ class NPCCodeMaker < CodeMaker
     4.times.map { rand(1..6) }.join('')
   end
 end
-
-
-# guess: 4414 secret_code: 4143
-# first condition [1, nil, nil, nil]
-# second condition [1, nil, 0, nil]
-# third condition [1, -1, 0, -1]
-# should be [1, 0, 0, -1]

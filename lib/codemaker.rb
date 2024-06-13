@@ -6,12 +6,12 @@ require_relative 'errors'
 class CodeMaker < Character
   include CustomErrors
 
+  CODEMAKER_LIMIT = 1
+  @codemaker_count = 0
+
   class << self
     attr_accessor :codemaker_count
   end
-
-  CODEMAKER_LIMIT = 1
-  @codemaker_count = 0
 
   def initialize
     super

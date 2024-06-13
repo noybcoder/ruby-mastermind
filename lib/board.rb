@@ -56,6 +56,6 @@ class Board
 
   def sort_key_pegs(round)
     validated_guess = codemaker.validate_guess(code_pegs_tracker[round], secret_code)
-    validated_guess.sort.reverse
+    validated_guess.sort { |a, b| b.to_s <=> a.to_s }
   end
 end
