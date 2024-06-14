@@ -20,17 +20,9 @@ class CodeMaker < Character
     handle_game_violations(CodeMakerLimitViolation, self.class.codemaker_count, CODEMAKER_LIMIT)
   end
 
-  def validate_guess(guesses, secret_code)
-    secret_code_counts = secret_code.tally
-
-    guesses.map.each_with_index do |guess, index|
-      if guess == secret_code[index]
-        secret_code_counts[guess] -= 1
-        1
-      elsif (secret_code_counts[guess] || 0) > 0
-        secret_code_counts[guess] -= 1
-        0
-      end
-    end
+  def validate_guess(guesses, codes)
+    exact_matches = guesses.zip(codes).count { |guess, code| guess == code }
+    color_matches = guesses.uniq.sum { |peg| [guesses.count(peg), codes.count(peg)].min } - exact_matches
+    [exact_matches, color_matches]
   end
 end

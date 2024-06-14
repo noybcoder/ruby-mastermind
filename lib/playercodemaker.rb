@@ -15,6 +15,5 @@ class PlayerCodeMaker < CodeMaker
   def prompt
     puts "Codemaker, enter any 4 numbers from #{display_colors(delimiter: ', ')} to create the secret code:"
     gets.chomp
-    puts 'The secret code is created. Time to guess!'
   end
 end

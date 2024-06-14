@@ -15,7 +15,7 @@ class Game
     round = 0
     loop do
       puts "Round #{round + 1}"
-      board.update_code_pegs_tracker
+      board.update_code_pegs_tracker(round)
       board.update_key_pegs_tracker(round)
       board.display_board(round, board.code_pegs_tracker, board.key_pegs_tracker)
       if win?(round)

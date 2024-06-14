@@ -14,8 +14,8 @@ module Visualizable
 
   def set_key_peg_colors(peg = "\u25cf")
     {
-      1 => "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
-      0 => "\e[38;2;255;255;255;1m#{peg}\e[0m", # white
+      0 => "\e[38;2;0;0;0;1m#{peg}\e[0m", # black
+      1 => "\e[38;2;255;255;255;1m#{peg}\e[0m", # white
       nil => "\e[38;2;0;0;0;1m \e[0m"
     }
   end
