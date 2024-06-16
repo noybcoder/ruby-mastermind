@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'board'
+require_relative 'npccodebreaker'
 
 class Game
   attr_accessor :board
@@ -32,7 +33,7 @@ class Game
   private
 
   def win?(round)
-    board.key_pegs_tracker[round].all?(1)
+    board.key_pegs_tracker[round].all?(0)
   end
 
   def lose?(round)
@@ -54,4 +55,4 @@ end
 
 board = Board.new
 game = Game.new(board)
-game.play
+puts game.play

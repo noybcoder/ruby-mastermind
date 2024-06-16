@@ -8,7 +8,7 @@ class PlayerCodeBreaker < CodeBreaker
   include Visualizable
   include CustomErrors
 
-  def make_guesses
+  def make_guesses(_round = nil)
     select_code { prompt }
   end
 
