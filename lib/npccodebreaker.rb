@@ -20,7 +20,7 @@ class NPCCodeBreaker < CodeBreaker
   end
 
   def update_feedback_tracker(guesses, codes)
-    feedback_tracker << getfeedback(guesses, codes)
+    feedback_tracker << get_feedback(guesses, codes)
   end
 
   def randomize

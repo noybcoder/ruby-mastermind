@@ -54,8 +54,8 @@ module Visualizable
       print idx + 1 < 10 ? "|   #{idx + 1}   | " : "|  #{idx + 1}   | "
       print "#{display_code_pegs(code_pegs_tracker, idx)} | "
       print "#{display_key_pegs(key_pegs_tracker, idx)} | "
-      print "Matches => exact: #{key_pegs_tracker[idx].count(1)} | "
-      puts "color: #{key_pegs_tracker[idx].count(0)} |"
+      print "Matches => exact: #{key_pegs_tracker[idx].count(0)} | "
+      puts "color: #{key_pegs_tracker[idx].count(1)} |"
     end
     puts "--------------------------------------------------------------------\n"
   end
