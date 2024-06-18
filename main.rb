@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/npccodemaker'
-require_relative 'lib/playercodemaker'
+require_relative 'lib/game'
 
-ncm = NPCCodeMaker.new
-pcm = PlayerCodeMaker.new
-
-p pcm, ncm
+game = Game.new
+puts game.play

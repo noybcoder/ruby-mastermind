@@ -3,7 +3,8 @@
 require_relative 'character'
 require_relative 'errors'
 
-class CodeMaker < Character
+# CodeMaker class that represents the codemaker in the Mastermind game.
+class CodeMaker < Character # The class inherits from the Character class
   include CustomErrors
 
   CODEMAKER_LIMIT = 1

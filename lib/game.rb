@@ -89,6 +89,3 @@ class Game
     codemaker.validate_guess(board.code_pegs_tracker[round], board.secret_code)
   end
 end
-
-game = Game.new
-puts game.play
