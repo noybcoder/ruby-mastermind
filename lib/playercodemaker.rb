@@ -3,8 +3,9 @@
 require_relative 'codemaker'
 require_relative 'visualizable'
 
+# PlayerCodeBreaker class that represents a human codemaker in the Mastermind game.
 class PlayerCodeMaker < CodeMaker
-  include Visualizable
+  include Visualizable # Includes the visualizable module for color display methods
 
   def set_secret_code
     select_code { prompt }

@@ -4,7 +4,7 @@ require_relative 'visualizable'
 
 # Character class that represents either a codemaker or a codebreaker in the Mastermind game.
 class Character
-  include Visualizable
+  include Visualizable  # Includes the visualizable module for color display methods
 
   # Public: Prompts the user to enter a code and ensures the code is valid.
   #
