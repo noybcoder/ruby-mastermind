@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'codemaker'
-require_relative 'visualizable'
 
 # NPCCodeMaker class that represents a computer codemaker in the Mastermind game.
 class NPCCodeMaker < CodeMaker
-  include Visualizable  # Includes the visualizable module for color display methods
-
   # Public: Sets the secret code for the game.
   #
   # Returns an array of integers representing the secret code.

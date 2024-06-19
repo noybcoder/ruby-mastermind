@@ -8,8 +8,10 @@ class CodeBreaker < Character
   include CustomErrors # Includes the custom error handling module
 
   CODEBREAKER_LIMIT = 1 # Set the maximum limit of codebreakers
+  @codebreaker_count = 0 # Set the codebreaker coun to 0
 
-  class << self # Class-level constant to set the maximum limit of codebreakers
+  # Class-level constant to set the maximum limit of codebreakers
+  class << self
     attr_accessor :codebreaker_count
   end
 

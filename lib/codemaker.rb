@@ -8,8 +8,10 @@ class CodeMaker < Character
   include CustomErrors # Includes the custom error handling module
 
   CODEMAKER_LIMIT = 1 # Set the maximum limit of codemakers
+  @codemaker_count = 0 # Set the codemaker count to 0
 
-  class << self # Class-level constant to set the maximum limit of codemakers
+  # Class-level constant to set the maximum limit of codemakers
+  class << self
     attr_accessor :codemaker_count
   end
 
