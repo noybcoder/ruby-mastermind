@@ -2,5 +2,5 @@
 
 require_relative 'lib/game'
 
-game = Game.new
-puts game.play
+game = Game.new # Create a new instance of the Game class
+puts game.play # Start the game and print the result

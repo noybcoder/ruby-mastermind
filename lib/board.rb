@@ -10,7 +10,7 @@ class Board
 
   # Nested Peg class that represents pegs on the board.
   class Peg
-     # Provides read-only access to code_pegs and key_pegs
+    # Provides read-only access to code_pegs and key_pegs
     attr_reader :code_pegs, :key_pegs
 
     # Public: Initializes a new Peg instance.
@@ -33,7 +33,7 @@ class Board
 
   # Provides read-write access to code_pegs_tracker and key_pegs_tracker
   attr_accessor :code_pegs_tracker, :key_pegs_tracker
-  attr_reader :secret_code  # Provides read-only access to the secret_code
+  attr_reader :secret_code # Provides read-only access to the secret_code
 
   # Public: Initializes a new Board instance.
   #
@@ -44,7 +44,7 @@ class Board
     @secret_code = codemaker.set_secret_code # Sets the secret code supplied by the codemaker
     @code_pegs_tracker = [] # Initializes an empty array to track code pegs
     @key_pegs_tracker = [] # Initializes an empty array to track key pegs
-    self.class.board_count += 1  # Increments the board count
+    self.class.board_count += 1 # Increments the board count
 
     # Handles violations of the board limit
     handle_game_violations(BoardLimitViolation, self.class.board_count, BOARD_LIMIT)

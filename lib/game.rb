@@ -16,7 +16,7 @@ class Game
   # rounds - The number of rounds to play (default is 11).
   #
   # Returns a new Game object.
-  def initialize(rounds=11)
+  def initialize(rounds = 11)
     @character = select_character # Prompts the user to select a character
     # Sets the codemaker based on user selection
     @codemaker = @character == 1 ? PlayerCodeMaker.new : NPCCodeMaker.new
@@ -71,6 +71,7 @@ class Game
 
     # Filters possible guesses for NPC codebreaker based on feedback
     return unless codebreaker.instance_of?(NPCCodeBreaker)
+
     codebreaker.filter_possible_guesses(board.code_pegs_tracker[round], get_validated_guess(round))
   end
 
